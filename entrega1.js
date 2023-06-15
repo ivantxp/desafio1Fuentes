@@ -35,7 +35,6 @@ class ProductManager {
 
     getProductById(id) {
         const targetID = this.products.find((el) => el.id === id);
-        debugger;
 
         if (targetID) {
             return targetID;
