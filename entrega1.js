@@ -6,20 +6,17 @@ class ProductManager {
     }
 
     getProducts() {
-        console.log(this.products);
+        return this.products;
     }
-    getpro;
 
     addProduct(title, description, price, thumbnail, code, stock) {
         const repit = this.products.some((el) => el.code === code);
         if (!title || !description || !price || !thumbnail || !code || !stock) {
             console.error("a dejado un campo de ingreso vacio en addProductos");
         } else if (typeof price !== "number" || typeof stock !== "number") {
-            console.log(
-                `solo puede ingresar numeros en price y stock en su ingreso ${title}`
-            );
+            console.error(`error ingreso ${title}`);
         } else if (repit) {
-            console.log(
+            console.error(
                 `el codigo "${code}" ya fue ingresado, ingrese uno nuevo`
             );
         } else {
@@ -38,20 +35,19 @@ class ProductManager {
 
     getProductById(id) {
         const targetID = this.products.find((el) => el.id === id);
+        debugger;
 
         if (targetID) {
-            console.log(`El producto buscado con id:${id} es: `, targetID);
+            return targetID;
         } else {
-            console.error("not Found");
-            console.log(`el id:${id} no fue encontrado`);
+            return "not Found";
         }
     }
 }
 
 //pruebas codigo
 const products = new ProductManager();
-
-products.getProducts();
+console.log(products.getProducts());
 
 //codigos de prueba ingreso
 products.addProduct("Title 1", "Description 1", 40, "sin imag", "coded71", 15);
@@ -66,10 +62,10 @@ products.addProduct("Title 3", "Description 3", "24", "sin imag", "coded1", 15);
 products.addProduct("Title 3", "Description 3", 24, "sin imag", "coded71", 15);
 
 //codigos de prueba mostrar todo los productos
-products.getProducts();
+console.log(products.getProducts());
 
 //codigos de prueba buscar por id
-products.getProductById(2);
+console.log(products.getProductById(2));
 
 //codigos de prueba buscar por id
-products.getProductById(10);
+console.log(products.getProductById(10));
